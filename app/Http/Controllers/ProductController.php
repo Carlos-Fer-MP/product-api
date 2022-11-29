@@ -3,59 +3,42 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Routing\Redirector;
-use Illuminate\Validation\ValidationException;
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return Application|Factory|View
+     * @return Response
      */
-    public function index(): View|Factory|Application
+    public function index(): Response
     {
-        $data['product'] = Product::query()->groupBy('id','desc')->paginate(6);
+        $data['product'] = Product::all();
 
-        return view('product.index', $data);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Application|Factory|View
-     */
-    public function create(): View|Factory|Application
-    {
-        return view('product.create');
+        return new  response($data);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return RedirectResponse
+     * @return JsonResponse
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request): JsonResponse
     {
-        $requestData = $request->validate([
-            'name' => 'required',
-            'price' => 'required',
-            'availability' => 'required',
-            'type' => 'required',
-        ]);
+        $requestData = $request->all();
 
-        $product = new Product($requestData);
-        $product->save();
+//        $product = new Product($requestData);
+//        $product->save();
 
-        return redirect()->route('product.index')->with('success', 'Product has been created successfully.');
+        $product = Product::query()->create($requestData);
+
+
+        //This isn't a good CQRS way to do things but, serves us to get the product created.
+        return response()->json(["product" => $product]);
     }
 
     /**
@@ -72,58 +55,41 @@ class ProductController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param Product $product
-     * @return Application|Factory|View
-     */
-    public function edit(Product $product): View|Factory|Application
-    {
-        $product = Product::query()->findOrFail($product);
-
-        return view('product.update', compact('product'));
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param Request $request
      * @param $id
-     * @return Redirector|RedirectResponse|Application|bool
+     * @return JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id): JsonResponse
     {
         if (!$request->has('name')) {
-            return redirect()->isInvalid();
+            return response()->json(["message" => "There's no matching product in our database"]);
         }
 
-        $requestData = $request->validate([
-            'name' => 'required',
-            'price' => 'required',
-            'availability' => 'required',
-            'type' => 'required',
-        ]);
+        $requestData = $request->all();
 
         Product::query()->Where('id', '=', $id)->update($requestData);
 
-        return redirect('/product')->with('message', 'Product successfully updated!');
+        return response()->json();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @return Application|RedirectResponse|Redirector|void
+     * @param $id
+     * @return JsonResponse
      */
-    public function destroy($id)
+    public function destroy($id): JsonResponse
     {
         $product = Product::query()->find($id);
 
         if ($product === null) {
-            return;
+            return response()->json(["message" => "There's no matching product in our database"]);
         }
 
         $product->delete();
 
-        return redirect('/product')->with('message', 'Product successfully deleted!');
+        return response()->json(["message" => "The product was successfully deleted"]);
     }
 }

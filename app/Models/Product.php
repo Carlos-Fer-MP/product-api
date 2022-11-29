@@ -11,6 +11,25 @@ class Product extends Model
 {
     use HasFactory, HasUuids, SoftDeletes;
 
+
+    /**
+     * The model's default values for attributes.
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'id',
+        'name',
+        'price',
+        'availability',
+        'type',
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
+
+    public $primaryKey = 'id';
+
     /**
      * The attributes that are mass assignable.
      *
