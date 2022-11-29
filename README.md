@@ -26,16 +26,15 @@
 >>     "availability" : boolean,<br>
 >>     "type" : "string"<br>
 >> }
->
->Pensando en las características principales de un producto, se llegó a la conclusión de que, principalmente, es necesario como no un uuid o id para identificarlos en bd,
->un nombre que defina el producto, un precio asociado a este, la disponibilidad de dicho producto, que se definió como un booleano par simplificar más este concepto, puesto que no es estrictamente implícito del producto, pero a efectos practicos resulta interesante agregarlo.
->Y un tipo que es un campo el cual nos define que es exactamente el producto, bien puede ser una bebida, fruta, cereal… y un largo, etc.
+>>
+>>- Pensando en las características principales de un producto, se llegó a la conclusión de que, principalmente, es necesario como no un uuid o id para identificarlos en bd,
+>>- un nombre que defina el producto, un precio asociado a este, la disponibilidad de dicho producto, que se definió como un booleano par simplificar más este concepto, puesto que no es estrictamente implícito del producto, pero a efectos practicos resulta interesante agregarlo.
+>>
+>>- Y un tipo que es un campo el cual nos define que es exactamente el producto, bien puede ser una bebida, fruta, cereal… y un largo, etc.
 > 
-> Una posible integración más a este modelo podría ser las imágenes, pero como es una pequeña api.
+> Una posible integración más a este modelo podría ser las imágenes, pero como es una pequeña api, se decidió no utilizar imágenes para que el objeto resultante de la respuesta sean lo más simple y limpio posible.
 >
-> Decidí no utilizar imágenes para que el objeto resultante de la respuesta sean lo más simple y limpio posible.
->
-> Habiendo definido los motivos por los cuales se ha moldeado la clase producto de esta forma, doy paso a puntualizar los endpoints disponibles.
+> Habiendo definido los motivos por los cuales se ha moldeado la clase producto de esta forma, es hora de puntualizar los endpoints disponibles.
 >
 > Existen 5 endpoints:
 > 
@@ -63,7 +62,7 @@
 >A estos endpoints se les puede llamar desde el cliente de preferencia como por ejemplo postman.
 ><br>
 ><br>
-> Cabe recalcar también el uso de lasconstantes concretas del .env en este caso se utilizan las siguientes specificaciónes para la conexión con la db:<br>
+> Cabe recalcar también el uso de las variables de entorno concretas del .env en este caso se utilizan las siguientes specificaciónes para la conexión con la db:<br>
 >>DB_CONNECTION=mysql<br>
 >>DB_HOST=127.0.0.1<br>
 >>DB_PORT=3306<br>
