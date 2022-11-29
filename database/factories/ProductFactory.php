@@ -18,7 +18,7 @@ class ProductFactory extends Factory
     public function definition()
     {
         return [
-            'id' => $this->faker->uuid(),
+            'uuid' => $this->faker->uuid(),
             'name' => $this->faker->name(),
             'price' => $this->faker->biasedNumberBetween(),
             'availability' => $this->faker->boolean(),

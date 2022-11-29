@@ -18,7 +18,7 @@ class Product extends Model
      * @var array
      */
     protected $attributes = [
-        'id',
+        'uuid',
         'name',
         'price',
         'availability',
