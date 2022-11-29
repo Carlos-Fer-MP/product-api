@@ -7,15 +7,15 @@
 > la propia documentación de laravel aconseja hacer rapidamente un pequeño alias dentro de nuestro /.bashrc o ~/.zshrc de la siguiente forma:
 >> *alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'*
 >
-> Para que cada vez que necesitamos ejecutar un comando de artisan por ejemplo, no debamos repetir siempre ./vendor/bin/sail delante.
+> Para que cada vez que se necesite ejecutar un comando de artisan por ejemplo, no se repetia siempre ./vendor/bin/sail delante.
 >
-> Lo bueno de laravel sail es que podemos especificar los contenedores a usar en nuestra aplicación desde el principio, en este caso e utillizado mysql por comodidad.
+> Lo bueno de laravel sail es que que se puede especificar los contenedores a usar en la aplicación desde el principio, en este caso se utillizo mysql.
 >
-> Una vez esplicado sobre que esta construido el proyecto, voy a explicar los aspectos relacionados con definición a la hora de resolver el problema:
+> Una vez explicado sobre que esta construido el proyecto, ahora toca explicar los aspectos relacionados con la definición a la hora de resolver el problema:
 >
-> En este ejercicio debo crear una api sencilla que me permita realizar las opciones CRUD (siendo esto, Create, Read, Update, & Delete) sobre una la entidad producto.
+> En este ejercicio se debe crear una api sencilla que permita realizar las opciones CRUD (siendo esto, Create, Read, Update, & Delete) sobre una entidad producto concreta.
 >
-> En el ejercicio no especificais exactamente alguna caracteristica, (por lo menos a nivel backend) asi que me e tomado la libertad de moldear la entidad por mi cuenta.
+> En el ejercicio no se especifica exactamente alguna caracteristica, (por lo menos a nivel backend) asi que se han tomado libertades a la hora moldear la entidad.
 >
 >
 >> Representación en Json:
@@ -26,16 +26,15 @@
 >>     "availability" : boolean,<br>
 >>     "type" : "string"<br>
 >> }
->
->Estuve pensando en las características principales de un producto, y, llegue a la conclusión de que, principalmente, necesitamos como no un uuid o id para identificarlos en bd
->un nombre que defina el producto, un precio asociado a este, la disponibilidad de dicho producto, que la he definido como un booleano par simplificar más este concepto, puesto que no es implícito del producto, pero me pareció interesante agregarlo.
->Y un tipo que es un campo el cual nos define que es exactamente el producto, bien puede ser una bebida, fruta, cereal… y un largo, etc.
+>>
+>>- Pensando en las características principales de un producto, se llegó a la conclusión de que, principalmente, es necesario como no un uuid o id para identificarlos en bd,
+>>- un nombre que defina el producto, un precio asociado a este, la disponibilidad de dicho producto, que se definió como un booleano par simplificar más este concepto, puesto que no es estrictamente implícito del producto, pero a efectos practicos resulta interesante agregarlo.
+>>
+>>- Y un tipo que es un campo el cual nos define que es exactamente el producto, bien puede ser una bebida, fruta, cereal… y un largo, etc.
 > 
-> Una posible integración más a este modelo podría ser las imágenes, pero como es una pequeña api.
+> Una posible integración más a este modelo podría ser las imágenes, pero como es una pequeña api, se decidió no utilizar imágenes para que el objeto resultante de la respuesta sean lo más simple y limpio posible.
 >
-> Decidí no utilizar imágenes para que el objeto resultante de la respuesta sean lo más simple y limpio posible.
->
-> Habiendo definido los motivos por los cuales se ha moldeado la clase producto de esta forma, doy paso a puntualizar los endpoints disponibles.
+> Habiendo definido los motivos por los cuales se ha moldeado la clase producto de esta forma, es hora de puntualizar los endpoints disponibles.
 >
 > Existen 5 endpoints:
 > 
@@ -60,10 +59,10 @@
 >>elimina un producto por su id. <br>
 >> <br>
 >
->A estos endpoints se les puede llamar desde el cliente de preferencia que cada uno pueda tener, yo en mi caso he utilizado postman porque estoy bastante familiarizado con él.
+>A estos endpoints se les puede llamar desde el cliente de preferencia como por ejemplo postman.
 ><br>
 ><br>
-> Cabe recalcar también el uso del .env yo en mi caso he utilizado las siguientes specificaciónes para la conexión con la db:<br>
+> Cabe recalcar también el uso de las variables de entorno concretas del .env en este caso se utilizan las siguientes specificaciónes para la conexión con la db:<br>
 >>DB_CONNECTION=mysql<br>
 >>DB_HOST=127.0.0.1<br>
 >>DB_PORT=3306<br>
@@ -73,6 +72,6 @@
 >><br>
 ><br>
 > 
->También he creado un simple y sencillo test para cada caso de uso, están almacenados en la ruta "\tests\feature\"
+>También hay unos simples y sencillos tests para cada caso de uso, están almacenados en la ruta "\tests\feature\"
 > 
 > Y poco más me queda por explicar, muchas gracias por la revisión.
