@@ -31,10 +31,8 @@ class ProductController extends Controller
     {
         $requestData = $request->all();
 
-//        $product = new Product($requestData);
-//        $product->save();
-
-        $product = Product::query()->create($requestData);
+        $product = new Product($requestData);
+        $product->save();
 
         //This isn't a good CQRS way to do things but, serves us to confirm that the product was created.
         return response()->json(["product" => $product]);
