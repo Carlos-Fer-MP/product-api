@@ -28,7 +28,7 @@ class Product extends Model
         'deleted_at'
     ];
 
-    public $primaryKey = 'id';
+    public $primaryKey = 'uuid';
 
     /**
      * The attributes that are mass assignable.
