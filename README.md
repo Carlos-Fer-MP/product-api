@@ -9,9 +9,9 @@
 >
 > Para que cada vez que se necesite ejecutar un comando de artisan por ejemplo, no se repetia siempre ./vendor/bin/sail delante.
 >
-> Lo bueno de laravel sail es que que se puede especificar los contenedores a usar en la aplicación desde el principio, en este caso se utillizo mysql.
+> Lo bueno de laravel sail es que se puede especificar los contenedores a usar en la aplicación desde el principio, en este caso se utillizo mysql.
 >
-> Una vez explicado sobre que esta construido el proyecto, ahora toca explicar los aspectos relacionados con la definición a la hora de resolver el problema:
+> Una vez explicado sobre que está construido el proyecto, ahora toca explicar los aspectos relacionados con la definición a la hora de resolver el problema:
 >
 > En este ejercicio se debe crear una api sencilla que permita realizar las opciones CRUD (siendo esto, Create, Read, Update, & Delete) sobre una entidad producto concreta.
 >
