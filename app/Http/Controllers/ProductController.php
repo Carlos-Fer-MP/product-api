@@ -60,14 +60,14 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id): JsonResponse
     {
-        if (!$request->has('name')) {
+        $requestData = $request->all();
+
+        if (!$requestData['name']) {
             return response()->json(["message" => "There's no matching product in our database"]);
         }
 
-        $requestData = $request->all();
-
-        Product::query()->Where('id', '=', $id)->update($requestData);
-
+        Product::query()->Where('uuid', '=', $id)->update($requestData);
+        //This isn't CQRS friendly but, serves us to confirm that the product was updated.
         return response()->json();
     }
 
