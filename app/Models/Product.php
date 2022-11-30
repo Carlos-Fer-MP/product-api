@@ -33,7 +33,7 @@ class Product extends Model
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var array<string, float, boolean>
      */
     protected $fillable = [
         'name',
